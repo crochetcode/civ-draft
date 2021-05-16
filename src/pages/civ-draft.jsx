@@ -1,61 +1,35 @@
 import React, { useState } from 'react';
 
-const maps = (
-    <>
-        <div className="box2">1</div>
-        <div className="box2">2</div>
-        <div className="box2">3</div>
-        <div className="box2">4</div>
-        <div className="box2">5</div>
-    </>
-)
+const maps = ['bogSocratra', 'crochetbia', 'ponds', 'tideout', 'reverseArena'];
 
-const civs = (
-    <>
-        <div className="box2">1</div>
-        <div className="box2">2</div>
-        <div className="box2">3</div>
-        <div className="box2">4</div>
-        <div className="box2">5</div>
-        <div className="box2">6</div>
-        <div className="box2">7</div>
-        <div className="box2">8</div>
-        <div className="box2">9</div>
-        <div className="box2">10</div>
-        <div className="box2">11</div>
-        <div className="box2">12</div>
-        <div className="box2">13</div>
-        <div className="box2">14</div>
-        <div className="box2">15</div>
-        <div className="box2">16</div>
-        <div className="box2">17</div>
-        <div className="box2">18</div>
-        <div className="box2">19</div>
-        <div className="box2">20</div>
-        <div className="box2">21</div>
-        <div className="box2">22</div>
-        <div className="box2">23</div>
-        <div className="box2">24</div>
-        <div className="box2">25</div>
-        <div className="box2">26</div>
-        <div className="box2">27</div>
-        <div className="box2">28</div>
-        <div className="box2">29</div>
-        <div className="box2">30</div>
-        <div className="box2">31</div>
-        <div className="box2">32</div>
-        <div className="box2">33</div>
-        <div className="box2">34</div>
-        <div className="box2">35</div>
-    </>
-)
+const civs = ['Aztecs','Berbers','Britons','Bulgarians', 'Burgundians', 'Burmese','Byzantines','Celts','Chinese','Cumans','Ethiopians','Franks','Goths',
+'Huns','Incas','Indians','Italians','Japanese','Khmer','Koreans','Lithuanians','Magyars','Malay','Malians','Mayans','Mongols','Persians','Portuguese',
+'Saracens', 'Sicilians', 'Slavs','Spanish','Tatars','Teutons','Turks','Vietnamese','Vikings'
+]
 
+const mapCivs = civs.map(civ => {
+    return (
+        <div>
+            <div className='flex col'>
+            <div 
+                className={`box2 ${civ}`}
+                // onClick={() => (addMap(map))}
+            >
+                {/* {mapUsed && 'X'} */}
+            </div>
+            <p>{civ}</p>
+            </div>
+        </div>
+    )
+})
 
 
 export const CivDraft = () => {
     const [playerOneName, setPlayerOneName] = useState('Player 1');
     const [playerTwoName, setPlayerTwoName] = useState('Player 2');
     const [componentIndex, setComponentIndex] = useState(0);
+    const [playerOneMap, setPlayerOneMap] = useState('');
+    const [playerTwoMap, setPlayerTwoMap] = useState('');
 
     const steps = [
         {
@@ -63,19 +37,29 @@ export const CivDraft = () => {
             component: (
                 <>
                     <div className='flex'>
-                        <div className='flex col'>
+                        <div className='flex col name'>
                             <h1>Player 1:</h1>
-                            <input type="text" placeholder='Enter Name' onChange={e => setPlayerOneName(e.target.value)} />
+                            <input 
+                            type="text" 
+                            onChange={e => setPlayerOneName(e.target.value)} 
+                            placeholder='Enter Name' 
+                            value={playerOneName}
+                            />
                         </div>
-                        <div className='flex col'>
+                        <div className='flex col name'>
                             <h1>Player 2:</h1>
-                            <input type="text" placeholder='Enter Name' onChange={e => setPlayerTwoName(e.target.value)} />
+                            <input 
+                            type="text" 
+                            placeholder='Enter Name' 
+                            onChange={e => setPlayerTwoName(e.target.value)} 
+                            value={playerTwoName}
+                            />
                         </div>
                     </div>
                     <div className='flex col'>
                         <button onClick={() => setComponentIndex(1)}>
-                            Submit
-                            </button>
+                            Next
+                        </button>
                     </div>
                 </>
             )
@@ -84,13 +68,14 @@ export const CivDraft = () => {
             name: 'P1: home map',
             component: (
                 <div className='flex'>
-                    <div className="flex col">
-                        <div className="box2"></div>
+                    <div className="flex col name">
+                        <div className={`box3 ${playerOneMap}`}></div>
+                        <p>{playerOneMap}</p>
                     </div>
-                    <div className='flex col'>
+                    <div className='flex col name'>
                         <h2>{playerOneName} pick map</h2>
                         <button onClick={() => setComponentIndex(2)}>
-                            Submit
+                            Next
                         </button>
                     </div>
                 </div>
@@ -100,13 +85,14 @@ export const CivDraft = () => {
             name: 'P2: home map',
             component: (
                 <div className='flex'>
-                    <div className="flex col">
-                        <div className="box2"></div>
+                     <div className="flex col name">
+                        <div className={`box3 ${playerTwoMap}`}></div>
+                        <p>{playerTwoMap}</p>
                     </div>
                     <div className='flex col'>
                         <h2>{playerTwoName} pick map</h2>
                         <button onClick={() => setComponentIndex(3)}>
-                            Submit
+                            Next
                         </button>
                     </div>
                 </div>
@@ -117,12 +103,12 @@ export const CivDraft = () => {
             component: (
                 <div className='flex'>
                     <div className="flex col">
-                        <div className="box2"></div>
+                        <div className="box3">X</div>
                     </div>
                     <div className='flex col'>
                         <h2>{playerTwoName} ban civ</h2>
                         <button onClick={() => setComponentIndex(4)}>
-                            Submit
+                            Next
                         </button>
                     </div>
                 </div>
@@ -133,12 +119,12 @@ export const CivDraft = () => {
             component: (
                 <div className='flex'>
                     <div className="flex col">
-                        <div className="box2"></div>
+                        <div className="box3">X</div>
                     </div>
                     <div className='flex col'>
                         <h2>{playerOneName} ban civ</h2>
                         <button onClick={() => setComponentIndex(5)}>
-                            Submit
+                            Next
                         </button>
                     </div>
                 </div>
@@ -148,7 +134,7 @@ export const CivDraft = () => {
         { name: 'P2: pick 2 civs' },
         { name: 'P1: pick 2 civs' },
     ]
-
+    
     const mapSteps = steps.map((step, i) => {
         return (
             <div 
@@ -159,6 +145,31 @@ export const CivDraft = () => {
             </div>
         )
     })
+    
+        const addMap = map => {
+            if(componentIndex === 0){
+                return
+            } else if (componentIndex === 1 && map !== playerTwoMap) {
+                setPlayerOneMap(map);
+            } else if (componentIndex === 2 && map !== playerOneMap){
+                setPlayerTwoMap(map);
+            }
+        }
+
+    const mapMaps = maps.map(map => {
+        const mapUsed = map === playerOneMap || map === playerTwoMap
+        return ( 
+            <div className='flex col'>
+            <div 
+                className={`box3 ${map}`}
+                onClick={() => (addMap(map))}
+            >
+                {mapUsed && 'X'}
+            </div>
+            <p>{map}</p>
+            </div>
+        )
+     })
 
     return (
         <div className='page'>
@@ -167,12 +178,11 @@ export const CivDraft = () => {
             </div>
             <div className='container'>
                 <div className="flex">
-
                     <div className="player">
                         <div className="maps left">
                             <h1>{playerOneName}</h1>
                             <div className="box"></div>
-                            <div className="box"></div>
+                            <div className={`box2 ${playerOneMap}`}></div>
                         </div>
                         <div className="civs left">
                             <div className="box"></div>
@@ -183,7 +193,7 @@ export const CivDraft = () => {
                     </div>
                     <div className="player">
                         <div className="maps">
-                            <div className="box"></div>
+                            <div className={`box2 ${playerTwoMap}`}></div>
                             <div className="box"></div>
                             <h1>{playerTwoName}</h1>
                         </div>
@@ -196,7 +206,7 @@ export const CivDraft = () => {
                     </div>
                 </div>
                 <div className="display">
-                    {componentIndex < 3 ? maps : civs}
+                    {componentIndex < 3 ? mapMaps : mapCivs}
                 </div>
                 {steps[componentIndex].component}
             </div>

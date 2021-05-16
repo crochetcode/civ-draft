@@ -1,3 +1,5 @@
+import './Maps.css';
+import './Civs.css';
 import './App.css';
 import {CivDraft} from './pages/civ-draft';
 
