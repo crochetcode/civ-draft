@@ -57,11 +57,17 @@
   justify-content: center;
   background-size: cover;
   background-position: center;
+  font-size: 6rem;
+  color: red;
+  font-family: monospace;
 }
 
 .box2 {
   height: 100px;
   width: 100px;
+  font-size: 8rem;
+  color: red;
+  font-family: monospace;
 }
 
 .box3 {
@@ -136,4 +142,23 @@ button:hover {
 
 .name {
   margin: 25px;
+}
+
+.middle {
+  width: 250px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  border-radius: 50%;
+  border: solid black;
+}
+
+.finished .player {
+  border: solid black;
+  width: auto;
+  margin: 25px 15px;
+}
+
+.finished {
+  margin-top: 200px;
 }
